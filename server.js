@@ -63,7 +63,8 @@ db.mongoose
     await init();
 
     if (finished == false) {
-      cron.schedule('*/5 * * * * *', updateBlockHeight);
+      // cron.schedule('*/5 * * * * *', updateBlockHeight);
+      setInterval(updateBlockHeight, 5000);
 
     }
   })
