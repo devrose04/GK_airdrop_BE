@@ -48,7 +48,7 @@ app.use(
 
 const db = require("./app/models");
 const Block = db.block;
-db.mongoose.set("strictQuery", false)
+db.mongoose.set("strictQuery", true)
 db.mongoose
   .connect(
     process.env.MONGODB_CONNECTION_URL,
