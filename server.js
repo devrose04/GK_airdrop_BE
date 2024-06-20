@@ -29,7 +29,8 @@ const corsOptions = {
   credentials: false,
   origin: process.env.BACKEND_URL
 };
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -63,6 +64,7 @@ db.mongoose
 
     if (finished == false) {
       cron.schedule('*/5 * * * * *', updateBlockHeight);
+
     }
   })
   .catch((err) => {
