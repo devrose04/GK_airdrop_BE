@@ -118,13 +118,13 @@ app.post("/saveTx", async (req, res) => {
       }
     });
     console.log("checkRepeatance ==> ", checkRepatance);
-    if (checkRepatance) {
-      globalErrorText = 'Already confirmed';
-      res.status(500).json({
-        msg: globalErrorText,
-      });
-      return;
-    }
+    // if (checkRepatance) {
+    //   globalErrorText = 'Already confirmed';
+    //   res.status(500).json({
+    //     msg: globalErrorText,
+    //   });
+    //   return;
+    // }
     const flag = await checkVout(tx, BtcAmount);
     console.log("flag ====> ", flag);
     if (!flag) {
