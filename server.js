@@ -29,7 +29,7 @@ const corsOptions = {
   credentials: false,
   origin: ["https://gkairdropbe-production-0746.up.railway.app"]
 };
-app.use(cors(corsOptions));
+app.use(cors());
 // app.use(cors());
 
 // parse requests of content-type - application/json
