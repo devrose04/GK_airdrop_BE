@@ -87,6 +87,7 @@ app.get("/recentBlock", async (req, res) => {
 });
 
 app.post("/saveTx", async (req, res) => {
+  console.log("save transaction!");
   try {
     const {
       tx,
@@ -112,15 +113,15 @@ app.post("/saveTx", async (req, res) => {
       }
     });
     console.log("checkRepeatance ==> ", checkRepatance);
-    if (checkRepatance) {
-      globalErrorText = 'Already confirmed';
-      res.status(500).json({
-        msg: globalErrorText,
-      });
-      return;
-    }
+    // if (checkRepatance) {
+    //   globalErrorText = 'Already confirmed';
+    //   res.status(500).json({
+    //     msg: globalErrorText,
+    //   });
+    //   return;
+    // }
     const flag = await checkVout(tx, BtcAmount);
-
+    console.log("flag ====> ", flag);
     if (!flag) {
       res.status(500).json({
         msg: globalErrorText,
@@ -262,13 +263,15 @@ async function checkVout(tx, BtcAmount) {
     vout.map((value, index) => {
       console.log("value.value ==> ", value.value);
       console.log("BtcAmount ==> ", BtcAmount);
+      console.log("scriptionpubkey: ========>", value.scriptpubkey_address);
+      console.log("treasure: ========>", process.env.TREASURE_WALLET_ADDRESS);
       if (
         value.scriptpubkey_address == process.env.TREASURE_WALLET_ADDRESS &&
         value.value >= BtcAmount
       )
         validFlag = true;
       else
-        globalErrorText =
+        globalErrorText 
           "The payment is higher than expected or there is no treasure address here";
     });
     return validFlag;
