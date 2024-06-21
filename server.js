@@ -100,6 +100,11 @@ app.post("/saveTx", async (req, res) => {
     } = req.body;
     console.log("tx ==> ", tx);
     console.log("recentBlockHeight ==> ", recentBlockHeight);
+    console.log("ordinalsAddress ==> ", ordinalsAddress);
+    console.log("ordinalsPublicKey ==> ", ordinalsPublicKey);
+    console.log("paymentAddress ==> ", paymentAddress);
+    console.log("paymentPublicKey ==> ", paymentPublicKey);
+    console.log("BtcAmount ==> ", BtcAmount);
 
     // check tx repeatance
     console.log("dbDate ==> ", dbDate);
@@ -113,13 +118,13 @@ app.post("/saveTx", async (req, res) => {
       }
     });
     console.log("checkRepeatance ==> ", checkRepatance);
-    // if (checkRepatance) {
-    //   globalErrorText = 'Already confirmed';
-    //   res.status(500).json({
-    //     msg: globalErrorText,
-    //   });
-    //   return;
-    // }
+    if (checkRepatance) {
+      globalErrorText = 'Already confirmed';
+      res.status(500).json({
+        msg: globalErrorText,
+      });
+      return;
+    }
     const flag = await checkVout(tx, BtcAmount);
     console.log("flag ====> ", flag);
     if (!flag) {
