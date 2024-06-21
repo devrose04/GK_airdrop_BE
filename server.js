@@ -29,8 +29,8 @@ const corsOptions = {
   credentials: false,
   origin: process.env.BACKEND_URL
 };
-// app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
+// app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
