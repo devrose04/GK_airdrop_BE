@@ -27,7 +27,7 @@ let globalErrorText = "";
 
 const corsOptions = {
   credentials: false,
-  origin: ["gkairdropbe-production-0746.up.railway.app"]
+  origin: ["https://gkairdropbe-production-0746.up.railway.app"]
 };
 app.use(cors(corsOptions));
 // app.use(cors());
